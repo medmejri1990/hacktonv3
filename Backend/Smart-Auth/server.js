@@ -3,6 +3,8 @@ const cors = require("cors");
 const config = require("./app/config/config.js");
 
 const app = express();
+const session = require('express-session');
+app.use(session({secret: 'sessionhackthon'}));
 
 const corsOptions = {
   origin: "http://localhost:8081"

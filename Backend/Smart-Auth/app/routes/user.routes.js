@@ -5,24 +5,15 @@ module.exports = app => {
     const router = require("express").Router();
   
     // Create a new user
-    router.post("/",
+    router.post("/sign-up/",
     [
       verifySignUp.checkDuplicateUsernameOrEmail,
     ],
-    userController.create
+    userController.signup
     );
     
-    // Retrieve a single user with id
-    //router.get("/:id", userController.findOne);
-  
-    // Update a user with id
-    //router.put("/:id/change-password", userController.update);
-  
-    // Delete a user with id
-    //router.delete("/:id", userController.delete);
-  
-    // Delete all users
-    //router.delete("/", userController.deleteAll);
+    // login
+    router.post("/sign-in/",userController.signin);
   
     app.use("/api/users", router);
   };

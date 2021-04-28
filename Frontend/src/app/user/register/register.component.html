@@ -1,0 +1,57 @@
+<div class="col-md-12">
+
+    <nb-card>
+      <nb-card-header>Register</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="RegisterForm" (ngSubmit)="onSubmit()">
+          <div class="form-group" >
+            <label for="username" class="label">username</label>
+            <input  formControlName="username" [ngClass]="{ 'form-control-danger': submitted && f.username.errors }"  type="username" nbInput  fullWidth id="username" placeholder="Example: usernme1990" name ="username" >
+            <nb-card accent="danger" *ngIf="submitted && f.username.errors" status="danger">
+              <nb-card-body *ngIf="submitted && f.username.errors.required" >username is required.</nb-card-body>
+            </nb-card>
+          </div>
+          <div class="form-group">
+            <label for="email" class="label">email</label>
+            <input formControlName="email" [ngClass]="{ 'form-control-danger': submitted && f.email.errors }" type="email" nbInput fullWidth id="email" placeholder="Example: email@gmail.com" name="email" >
+            <nb-card accent="danger" *ngIf="submitted && f.email.errors" status="danger">
+              <nb-card-body *ngIf="submitted && f.email.errors.required" >email is required.</nb-card-body>
+              <nb-card-body *ngIf="submitted && f.email.errors.email" >email be email 'email@xyz.fr'</nb-card-body>
+            </nb-card>
+          </div>
+          <div class="form-group">
+            <label for="password" class="label">password</label>
+            <input formControlName="password" [ngClass]="{ 'form-control-danger': submitted && f.password.errors }" type="password" nbInput fullWidth id="password" placeholder="Example: 67428ff" name="password" >
+            <nb-card accent="danger" *ngIf="submitted && f.password.errors" status="danger">
+              <nb-card-body *ngIf="submitted && f.password.errors.required" >password is required.</nb-card-body>
+            </nb-card>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword" class="label">confirm Password</label>
+            <input formControlName="confirmPassword" [ngClass]="{ 'form-control-danger': submitted && f.confirmPassword.errors }" type="password" nbInput fullWidth id="confirmPassword" placeholder="Example: 67428ff" name="confirmPassword" >
+            <nb-card accent="danger" *ngIf="submitted && f.confirmPassword.errors" status="danger">
+              <nb-card-body *ngIf="submitted && f.confirmPassword.errors.required" >confirm Password is required.</nb-card-body>
+              <nb-card-body *ngIf="submitted && f.confirmPassword.errors.mustMatch" >confirm Password must be equal to password </nb-card-body>
+            </nb-card>
+          </div>
+          <div class="form-group">
+            <label for="role" class="label">Role</label>
+            <nb-select placeholder="Form control" formControlName="role"fullWidth id="role"  name="role" >
+                <nb-option value="admin">admin</nb-option>
+                <nb-option value="admin">user</nb-option>
+              </nb-select>
+
+            <nb-card accent="danger" *ngIf="submitted && f.role.errors" status="danger">
+                <nb-card-body *ngIf="submitted && f.role.errors.required" >role  is required.</nb-card-body>
+            </nb-card>
+           </div>
+        <nb-card-footer>
+          <button type="button" nbButton shape="semi-round" outline status="success" (click)="onSubmit()" >Register</button>
+        </nb-card-footer>
+        <nb-card-footer>
+          <button type="reset" (click)="onReset()" nbButton shape="semi-round" outline status="danger">Cancel</button>
+        </nb-card-footer>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
