@@ -2,13 +2,13 @@ version: '3'
 services:
   db:
     image: mysql
+    container_name: ${DATABASE_HOST}
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_HOST: guestbook_database_1
-      MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: hackathon
+      MYSQL_ROOT_HOST: ${DATABASE_HOST}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
     ports: 
       - 3306:3306
     volumes:
@@ -21,7 +21,7 @@ services:
     environment:
       - APP_ENV=${APP_ENV}
       - APP_SECRET=${APP_SECRET}
-      - DATABASE_URL=mysql://root:root@hackathon_db_1:3306/hackathon?serverVersion=5.7
+      - DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?serverVersion=5.7
     volumes:
       - ./Backend/Smart-Doctrina:/var/www
     ports:
@@ -44,7 +44,12 @@ services:
       context: Backend/Smart-Auth/
       dockerfile: ../../docker/node/dockerfile
     depends_on:
-      - nginx
+      - db
+    environment:
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
     ports:
         - 8081:8081
     volumes:

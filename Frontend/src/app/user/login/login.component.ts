@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
         const position = NbGlobalPhysicalPosition.BOTTOM_LEFT;
         const status = 'success';
         this.toastrService.show('', 'User is successfully logged in !', { position, status },);
-        //this.router.navigate(['/users']);
+        this.router.navigate(['/blog']);
       },
     );
 

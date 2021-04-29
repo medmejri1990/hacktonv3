@@ -4,12 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './user/register/register.component';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
+import { BlogComponent } from './blog/blog/blog.component';
 
 const routes: Routes = [{
-  //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
- // { path: 'register', component: RegisterComponent },
-  //{ path: 'detail/:id', component: HeroDetailComponent },
-  //{ path: 'heroes', component: HeroesComponent }
   path: '',
   component: AppComponent,
   children: [
@@ -21,11 +18,10 @@ const routes: Routes = [{
       path: 'user/register',
       component: RegisterComponent,
     },
-    /*{
-      path: 'user',
-      loadChildren: () => import('./user/user.module')
-        .then(m => m.UserModule),
-    },*/
+    {
+      path: 'blog',
+      component: BlogComponent,
+    },    
     
   ],
   },
